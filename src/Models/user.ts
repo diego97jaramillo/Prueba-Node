@@ -1,4 +1,10 @@
-import { AutoIncrement, BelongsTo, Column, DataType, ForeignKey, HasMany, HasOne, Model, PrimaryKey, Table } from "sequelize-typescript";
+import { AutoIncrement, BelongsTo, 
+    Column,
+    DataType,
+    ForeignKey,
+    HasMany, HasOne,
+    Model, PrimaryKey,
+    Table } from "sequelize-typescript";
 import { Role } from "./role";
 import { Cart} from "./cart";
 import { Order } from "./order";
@@ -26,11 +32,6 @@ export class User extends Model {
     })
     password!: string;
 
-    @Column({
-        type: DataType.INTEGER
-    })
-    stock!: number;
-
     @ForeignKey(() => Role)
     @Column({
         type: DataType.INTEGER,
@@ -42,8 +43,8 @@ export class User extends Model {
     role!: Role;
 
     @HasOne(() => Cart)
-    cart!: Cart
+    cart!: Cart;
     
     @HasMany(() => Order)
-    order!: Order
+    order!: Order;
 }

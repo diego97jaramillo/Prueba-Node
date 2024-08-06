@@ -17,7 +17,7 @@ export class Cart extends Model {
 
     @ForeignKey(() => User)
     @Column({
-        type: DataType.CHAR(200)
+        type: DataType.INTEGER
     })
     userId!: string; //se manejan 2 nobres admin/client
     @BelongsTo(() => User)

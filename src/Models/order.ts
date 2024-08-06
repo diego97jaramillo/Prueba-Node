@@ -4,7 +4,7 @@ import { ProductCart } from "./productCart";
 
 @Table({
     tableName: "orders",
-    timestamps: true
+    timestamps: false
 })
 
 export class Order extends Model {
@@ -22,7 +22,7 @@ export class Order extends Model {
 
     @ForeignKey(() => User)
     @Column({
-        type: DataType.CHAR(200)
+        type: DataType.INTEGER
     })
     UserId!: string; 
     @BelongsTo(() => User)
@@ -30,7 +30,7 @@ export class Order extends Model {
 
     @ForeignKey(() => ProductCart)
     @Column({
-        type: DataType.CHAR(200)
+        type: DataType.INTEGER
     })
     ProductCartId!: string; 
     @BelongsTo(() => ProductCart)

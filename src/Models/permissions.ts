@@ -4,7 +4,7 @@ import { Entity } from "./entities";
 
 @Table({
     tableName: "permissions",
-    timestamps: true
+    timestamps: false
 })
 
 export class Permission extends Model {
@@ -37,7 +37,7 @@ export class Permission extends Model {
 
     @ForeignKey(() => Role)
     @Column({
-        type: DataType.CHAR(200)
+        type: DataType.INTEGER
     })
     RoleId!: string; 
     @BelongsTo(() => Role)
@@ -45,7 +45,7 @@ export class Permission extends Model {
     
     @ForeignKey(() => Entity)
     @Column({
-        type: DataType.CHAR(200)
+        type: DataType.INTEGER
     })
     EntityId!: string; 
     @BelongsTo(() => Entity)

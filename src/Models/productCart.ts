@@ -23,17 +23,17 @@ export class ProductCart extends Model {
 
     @ForeignKey(() => Cart)
     @Column({
-        type: DataType.CHAR(200)
+        type: DataType.INTEGER
     })
-    cartId!: string; //se manejan 2 nobres admin/client
+    cartId!: string; 
     @BelongsTo(() => Cart)
     cart!:Cart
 
     @ForeignKey(() => Product)
     @Column({
-        type: DataType.CHAR(200)
+        type: DataType.INTEGER
     })
-    productId!: string; //se manejan 2 nobres admin/client
+    productId!: string; 
     @BelongsTo(() => Product)
     product!:Product
 

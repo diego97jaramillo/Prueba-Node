@@ -1,5 +1,7 @@
 import { injectable } from "tsyringe";
 import { User } from "../Models/user";
+import { log } from "console";
+import { UserInterface } from "../Services/userService";
 
 
 @injectable()
@@ -21,16 +23,10 @@ export default class UserRepository {
         }
     }
 
-    async update(id:number, userInput: User) {
+    async update(id:number, userInput: Partial<User>) {
         try {
-            const user: User |  null = await User.findByPk(id)
-            if(!user) {
-                return 
-            }
-            user.email = userInput.email
-            user.roleId = userInput.roleId
-            user.save()
-            return user
+            log
+            return await User.update(userInput, {where: {id}})
         } catch(err) {
             console.error(err);            
         }

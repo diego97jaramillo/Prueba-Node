@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 import { container } from "tsyringe";
 import UserService from "../Services/userService";
-import { error } from "console";
 import CartService from "../Services/cartService";
+
 
 
 export default class UserController {
@@ -33,15 +33,16 @@ export default class UserController {
     }
 
     static async updateUser(req:Request, res: Response) {
-        let id = req.params.id
-        const {password, email, roleId} = req.body;
-
-        if(!password|| !email || !roleId) {
-            res.status(400).json({status: 400, message: "bad request"})
+        try {
+            let user = req.body
+            let {id} = req.params
+            const userService = container.resolve(UserService);
+            const userCreated = await userService.updateUser(parseInt(id), user)
+            res.status(200).json({ status: 200, message: userCreated})
+        } catch (err) {
+            console.error(err)
         }
-        const userService = container.resolve(UserService);
-        const userUpdated = await userService.updateUser(parseInt(id), req.body)
-        res.status(200).json({user: userUpdated})
+
     }
 
     static async deleteUser(req: Request, res: Response) { 
